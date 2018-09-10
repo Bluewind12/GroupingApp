@@ -4,4 +4,5 @@
     <string name="change">グループ\n分け</string>
     <string name="editHint">一行ごとに分けたいものを入力してね！</string>
     <string name="editNumHint">１以上</string>
+    <string name="inputDebug">%d行目：[ %s ]</string>
 </resources>
