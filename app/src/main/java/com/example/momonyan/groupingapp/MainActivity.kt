@@ -1,5 +1,6 @@
 package com.example.momonyan.groupingapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +19,14 @@ class MainActivity : AppCompatActivity() {
         init()
 
         selectButton.setOnClickListener {
-            val inputTexts = editGroupText.text.split("\n")
-            for (i in 0 until inputTexts.size) {
-                Log.d("入力されてる文字", getString(R.string.inputDebug, i, inputTexts[i]))
-            }
+            //デバック用
+            val inputTexts:List<String> = editGroupText.text.split("\n")
+
+            val intent = Intent(this,GroupViewActivity::class.java)
+            intent.putExtra("String",editGroupText.text.toString())
+            intent.putExtra("Num",Integer.parseInt(editNumText.text.toString()))
+            startActivity(intent)
+
         }
     }
 
