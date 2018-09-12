@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GroupingApp</string>
+    <string name="group">グループに分ける</string>
+    <string name="change">グループ\n分け</string>
+    <string name="editHint">一行ごとに分けたいものを入力してね！</string>
+    <string name="editNumHint">１以上</string>
+    <string name="inputDebug">%d行目：[ %s ]</string>
 </resources>
