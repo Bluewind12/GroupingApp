@@ -8,7 +8,7 @@ import android.widget.ListView
 import kotlinx.android.synthetic.main.group_view.*
 
 class GroupViewActivity : AppCompatActivity() {
-//    private lateinit var groupView: ListView
+    //    private lateinit var groupView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.group_view)
@@ -16,13 +16,16 @@ class GroupViewActivity : AppCompatActivity() {
         val memberStrings = memberString.split("\n")
         val groupNum = intent.getIntExtra("Num", 1)
 
-        Log.d("入力文字",getString(R.string.inputDebug,0,memberStrings[0]))
+        Log.d("入力文字", getString(R.string.inputDebug, 0, memberStrings[0]))
         val items = mutableListOf<String>()
-        for(i in 0 until memberStrings.size) {
-            items.add(i,memberStrings[i])
+        for (i in 0 until memberStrings.size) {
+            items.add(i, memberStrings[i])
         }
         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
 //        groupView = findViewById(R.id.groupListView)
 //        groupView.adapter = arrayAdapter
+        val listView = ListView(this)
+        listView.adapter = arrayAdapter
+        setContentView(listView)
     }
 }
