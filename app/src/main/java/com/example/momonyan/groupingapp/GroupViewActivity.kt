@@ -11,15 +11,13 @@ class GroupViewActivity : AppCompatActivity() {
     //    private lateinit var groupView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.group_view)
         var memberString = intent.getStringExtra("String")
-        val memberStrings = memberString.split("\n")
+        val shuffleStrings = memberString.split("\n").shuffled()
         val groupNum = intent.getIntExtra("Num", 1)
 
-        Log.d("入力文字", getString(R.string.inputDebug, 0, memberStrings[0]))
         val items = mutableListOf<String>()
-        for (i in 0 until memberStrings.size) {
-            items.add(i, memberStrings[i])
+        for (i in 0 until shuffleStrings.size) {
+            items.add(i, shuffleStrings[i])
         }
         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
 //        groupView = findViewById(R.id.groupListView)
