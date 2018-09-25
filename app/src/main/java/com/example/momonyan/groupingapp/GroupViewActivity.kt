@@ -11,16 +11,22 @@ class GroupViewActivity : AppCompatActivity() {
     //    private lateinit var groupView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var memberString = intent.getStringExtra("String")
-        val shuffleStrings = memberString.split("\n").shuffled().filterNotNull()
+        var memberString = intent.getStringExtra("String").split("\n").toMutableList()
         val groupNum = intent.getIntExtra("Num", 1)
+        if (memberString.size % groupNum != 0) {
+            for (i in 0 until groupNum - (memberString.size % groupNum)) {
+                memberString.add(memberString.lastIndex + 1, "")
+            }
+        }
+        val shuffleStrings = memberString.shuffled()
 
         val items = mutableListOf<String>()
         var listCount = 0
         var groupCount = 1
+        val putGroup = shuffleStrings.size / groupNum
         for (i in 0 until shuffleStrings.size) {
-            if(i %(shuffleStrings.size / groupNum) == 0){
-                items.add(listCount,"Group"+groupCount)
+            if (i % putGroup == 0) {
+                items.add(listCount, "Group" + groupCount)
                 listCount++
                 groupCount++
             }
