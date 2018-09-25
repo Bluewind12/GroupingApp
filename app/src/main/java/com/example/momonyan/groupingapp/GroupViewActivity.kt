@@ -30,7 +30,7 @@ class GroupViewActivity : AppCompatActivity() {
                 listCount++
                 groupCount++
             }
-            items.add(listCount, shuffleStrings[i])
+            items.add(listCount, "\t\t"+shuffleStrings[i])
             listCount++
         }
         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
