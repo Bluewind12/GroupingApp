@@ -1,5 +1,6 @@
 package com.example.momonyan.groupingapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Layout
@@ -12,13 +13,6 @@ import android.widget.ListView
 class GroupViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //ボタンの処理追加
-        val backButton: Button = Button(this)
-        backButton.text = "戻る"
-        backButton.setOnClickListener {
-            finish()
-        }
-
         //グループ分け
         var memberString = intent.getStringExtra("String").split("\n").toMutableList()
         val groupNum = intent.getIntExtra("Num", 1)
@@ -51,11 +45,33 @@ class GroupViewActivity : AppCompatActivity() {
         val listView = ListView(this)
         listView.adapter = arrayAdapter
 
+        //ボタンの処理追加
+        val backButton = Button(this)
+        val reloadButton = Button(this)
+
+        backButton.text = "戻る"
+        backButton.setOnClickListener {
+            finish()
+        }
+        reloadButton.text = "更新"
+        reloadButton.setOnClickListener {
+            val reloadIntent = Intent(this, GroupViewActivity::class.java)
+            reloadIntent.putExtra("String", intent.getStringExtra("String"))
+            reloadIntent.putExtra("Num", groupNum)
+            startActivity(reloadIntent)
+            finish()
+        }
+
         //表示
-        val layout:LinearLayout = LinearLayout(this)
+        //ボタン配置
+        val buttonsLayout = LinearLayout(this)
+        buttonsLayout.addView(backButton)
+        buttonsLayout.addView(reloadButton)
+        //メイン的な
+        val layout: LinearLayout = LinearLayout(this)
         layout.orientation = LinearLayout.VERTICAL
+        layout.addView(buttonsLayout)
         layout.addView(listView)
-        layout.addView(backButton)
         setContentView(layout)
     }
 }
