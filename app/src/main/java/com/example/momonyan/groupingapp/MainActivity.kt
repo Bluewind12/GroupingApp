@@ -3,7 +3,6 @@ package com.example.momonyan.groupingapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 
@@ -19,12 +18,9 @@ class MainActivity : AppCompatActivity() {
         init()
 
         selectButton.setOnClickListener {
-            //デバック用
-            val inputTexts:List<String> = editGroupText.text.split("\n")
-
-            val intent = Intent(this,GroupViewActivity::class.java)
-            intent.putExtra("String",editGroupText.text.toString())
-            intent.putExtra("Num",Integer.parseInt(editNumText.text.toString()))
+            val intent = Intent(this, GroupViewActivity::class.java)
+            intent.putExtra("String", editGroupText.text.toString())
+            intent.putExtra("Num", Integer.parseInt(editNumText.text.toString()))
             startActivity(intent)
 
         }
